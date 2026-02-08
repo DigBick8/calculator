@@ -1,25 +1,48 @@
-using System;
-
-public static class Calculator
-{
-    public static void Main(string[] args)
+    static double? Calculate(int num1, int num2, char operation)
     {
-    int num1, num2;
-    char operation = ' ';
-    
-    Console.Write("Enter first number: ");
-    num1 = Convert.ToInt32(Console.ReadLine());
-    
-    Console.Write("Enter second number: ");
-    num2 = Convert.ToInt32(Console.ReadLine());
-    
-    double? result = Calculate(num1, num2, operation);
-    
-    if (result == null)
-            Console.WriteLine("Result: null");
-    else
-            Console.WriteLine("Result: " + result);
-    
+                while (operation != '=')
+            {
+                Console.WriteLine("Choose Operation ( + , - , * , / , % , = )");
+                operation = Convert.ToChar(Console.ReadLine());
+            
+            switch (operation)
+                {
+                case '+':
+                    return num1 + num2;
+                    
+                case '-':
+                    return num1 - num2;
+                    
+                case '/':
+                    if(num2 == 0){
+                        Console.WriteLine("Cannot divide by zero");
+                        return null;
+                    }
+                    else{
+                        return (double) num1 / num2;
+                    }
+                    
+                case '*':
+                    return num1 * num2;
+                    
+                case '%':
+                    if(num2 == 0){
+                        Console.WriteLine("Cannot modulo by zero");
+                        return null;
+                    }
+                    else{
+                        return num1 % num2;
+                    }
+                    
+                case '=':
+                    Console.WriteLine("Program Terminated");
+                    return null;
+                    
+                default:
+                    Console.WriteLine("Incorrect Operation Used, Please try again");
+                    return null;
+                
+                }
+            }
+        return null;
     }
-}
-
